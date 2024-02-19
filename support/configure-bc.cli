@@ -1,0 +1,33 @@
+batch
+embed-server --server-config=standalone-full.xml
+
+/system-property=org.uberfire.nio.git.dir:add(value="${jboss.server.data.dir}/kie/git")
+/system-property=org.kie.server.repo:add(value="${jboss.server.data.dir}/kie/repo")
+/system-property=org.uberfire.metadata.index.dir:add(value="${jboss.server.data.dir}/kie/index")
+/system-property=org.guvnor.m2repo.dir:add(value="${jboss.server.data.dir}/kie/m2repo")
+
+# BC EAP users
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=pamAdmin)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=pamAdmin, clear={password=ibmpam1!})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=pamAdmin, name=role, value=[analyst,admin,manager,user,kie-server,kiemgmt,rest-all])
+
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=kieserver)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=kieserver, clear={password=kieserver1!})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=kieserver, name=role, value=[kie-server,rest-all])
+
+
+######
+## System Property & Users for patch validation ##
+######
+
+/system-property=jbpm.wb.querymode:add(value="STRICT")
+
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=martin)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=martin, clear={password=martin})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=martin, name=role, value=[user,developer,rest-project,eng])
+
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=karina)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=karina, clear={password=karina})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=karina, name=role, value=[user,developer,rest-project,pm])
+
+run-batch

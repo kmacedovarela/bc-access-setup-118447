@@ -1,0 +1,7 @@
+# pack-refs with: peeled
+bb4a6f725121e1d5b7c890fa983df9bf43366a4e refs/heads/karina-uf-user
+2cf811fcc0cfab06bef8b36ab101da5d6afc79dd refs/heads/locks
+0972bdbb93697c30d9dff641f92d1945d7ba1c8a refs/heads/martin-uf-user
+1f4d0bb540da34ef45d1cfea675bb584a40f166c refs/heads/master
+7235838cbfc35956a2390ef077d19b74cf7aa250 refs/heads/servers
+eb0537f20af4f8ec2f1201addbbefa512e3753fb refs/heads/service-tasks

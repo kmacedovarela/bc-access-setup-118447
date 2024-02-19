@@ -1,0 +1,38 @@
+batch
+embed-server --server-config=standalone-full.xml
+
+# System properties
+/system-property=org.uberfire.nio.git.dir:add(value=\${jboss.server.data.dir}/kie/git)
+/system-property=org.kie.server.repo:add(value=\${jboss.server.data.dir}/kie/repo)
+/system-property=org.uberfire.metadata.index.dir:add(value=\${jboss.server.data.dir}/kie/index)
+/system-property=org.guvnor.m2repo.dir:add(value=\${jboss.server.data.dir}/kie/m2repo)
+
+# KIE Server properties
+/system-property=org.kie.server.id:add(value="kieserver1")
+/system-property=org.kie.server.controller:add(value="http://localhost:8080/business-central/rest/controller")
+/system-property=org.kie.server.controller.user:add(value="kieserver")
+/system-property=org.kie.server.controller.pwd:add(value="kieserver1!")
+/system-property=org.kie.server.location:add(value="http://localhost:8180/kie-server/services/rest/server")
+/system-property=org.uberfire.nio.git.ssh.port:add(value="8002")
+/system-property=org.kie.server.user:add(value="kieserver")
+
+# Elytron
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=kieserver)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=kieserver, clear={password=kieserver1!})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=kieserver, name=role, value=[kie-server,rest-all])
+
+
+######
+## Users for patch validation ##
+######
+
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=martin)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=martin, clear={password=martin})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=martin, name=role, value=[rest-project,eng,kie-server])
+
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity(identity=karina)
+/subsystem=elytron/filesystem-realm=ApplicationRealm:set-password(identity=karina, clear={password=karina})
+/subsystem=elytron/filesystem-realm=ApplicationRealm:add-identity-attribute(identity=karina, name=role, value=[rest-project,pm,kie-server])
+##############################
+
+run-batch

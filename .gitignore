@@ -1,0 +1,6 @@
+/target
+.idea
+/.dockerignore
+.DS_STORE
+
+
