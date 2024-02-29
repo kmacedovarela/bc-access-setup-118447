@@ -23,7 +23,7 @@ Install two EAPs, one for Business Central and one for KIE Server using the auto
 - uses `standalone-full.xml` by default
 - accessible via http://localhost:8080/business-central: 
 - Access
-  - **usr**: `pamAdmin`, **pwd**: `ibmpam1`, **roles**: analyst,admin,manager,user,kie-server,kiemgmt,rest-all 
+  - **usr**: `pamAdmin`, **pwd**: `ibmpam1!`, **roles**: analyst,admin,manager,user,kie-server,kiemgmt,rest-all 
   - **usr**: `karina`, **pwd**: `karina`, **roles**: user,developer,rest-project,eng 
   - **usr**: `martin`, **pwd**: `martin`, **roles**: user,developer,rest-project,pm
 
